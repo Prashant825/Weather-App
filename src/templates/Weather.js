@@ -39,7 +39,6 @@ export default function Weather() {
         <button type="submit">Submit</button>
        </form>
        <p>{tempData ? `Temp: ${tempData}°C` : 'No temperature data available'}</p>      </div>
-      
     </div>
   )
 }
