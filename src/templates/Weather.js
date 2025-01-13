@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faSun } from '@fortawesome/free-solid-svg-icons';
 import { FaCloudSun, FaSun, FaCloudRain, FaSmog, FaCloud } from 'react-icons/fa';
 import AirIcon from '@mui/icons-material/Air';
+import  {faThermometerHalf} from '@fortawesome/free-solid-svg-icons';
 
 export default function Weather() {
 
@@ -50,40 +51,39 @@ export default function Weather() {
   return (
     <div>
        <div>
-        <h2 className='weather-heading'>Check Weather Application</h2>
+        <h2 className='weather-heading'>Weather Application</h2>
         <div className='waether-show-div'>
           <form onSubmit={handleSubmit}>
-            <input type="text" name='name' value={formData} onChange={(e) => setFormData(e.target.value)} required />
-            <button type="submit">Submit</button>
+            <input type="text" name='name' placeholder='Enter the city..' value={formData} onChange={(e) => setFormData(e.target.value)} required />
+            <button type="submit">Check</button>
           </form>
         </div>
 
         {/* ==========Weather Template========== */}
 
-        {weatherData ?
         <div className="main">
           <div className="details">
-            {name ? <h3>City: {name}</h3> : ''}
-            {temp ? <strong>Temperature: {temp}°C</strong> : ''}
+            {name ? <h3>City: {name}</h3> : '--'}
+            {temp ? <h3><FontAwesomeIcon icon={faThermometerHalf} size="2x" /> {temp} °C temp</h3> : '--'}
             <div className="forecast">
               <div className="forecast-item">
                 <p>Cloud</p>
-                {description ? <div> {description === 'clear sky' ? <FontAwesomeIcon icon={faSun} size="2x" color="#FDB813" />: description === 'fog'? <FaSmog size={50} color="#808080" />: <FaCloudSun size={50} color="#FDB813" /> } 
-                  <p className="temp">{description}</p></div> : ''}
+                {description ? <div> {description === 'clear sky' ? <FontAwesomeIcon icon={faSun} size="2x" color="#FDB813" />: description === 'fog'? <FaSmog size={35} color="#808080" />: <FaCloudSun size={35} color="#FDB813" /> } 
+                  <p className="temp">{description}</p></div> : '--'}
               </div>
               <div className="forecast-item">
                 <p>Visibility</p>
-                {visibility ? <div>{visibility > 8000?<FaSun size={50} color="#FDB813" />: visibility > 3000?<FaCloud size={50} color="#B0C4DE" />: visibility > 1000?<FaCloudRain size={50} color="#4682B4" />:<FaSmog size={50} color="#808080" />}
-                  <p className="temp">{visibility} km</p></div> : ''}
+                {visibility ? <div>{visibility > 8000?<FaSun size={35} color="#FDB813" />: visibility > 3000?<FaCloud size={35} color="#B0C4DE" />: visibility > 1000?<FaCloudRain size={35} color="#4682B4" />:<FaSmog size={35} color="#808080" />}
+                  <p className="temp">{visibility} km</p></div> : '--'}
               </div>
               <div className="forecast-item">
                 <p>Wind</p>
                 {speed ? <div> <AirIcon fontSize="large" color="primary" />
-                  <p className="temp">Speed {speed} /H</p></div> : ''}
+                  <p className="temp">Speed {speed} /H</p></div> : '--'}
               </div>
             </div>
           </div>
-        </div> : <p className='before-cheack-weather-desc'>Please Enter the city name in above input for check the weather.</p>}
+        </div> 
       </div> 
     </div>
   )
